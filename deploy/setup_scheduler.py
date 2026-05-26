@@ -1,7 +1,7 @@
 import os
 import subprocess
 
-PROJECT_ID   = os.environ.get("GCP_PROJECT_ID", "finance-497101")
+PROJECT_ID   = os.environ.get("GCP_PROJECT_ID")
 REGION       = "us-central1"
 FUNCTION_NAME = "fraud-dbt-refresh"
 SCHEDULER_JOB = "daily-fraud-pipeline"
