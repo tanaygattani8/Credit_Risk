@@ -3,7 +3,7 @@ import subprocess
 import sys
 
 # Config
-PROJECT_ID   = os.environ.get("GCP_PROJECT_ID", "finance-497101")
+PROJECT_ID   = os.environ.get("GCP_PROJECT_ID")
 REGION       = "us-central1"
 SERVICE_NAME = "fraud-investigation-agent"
 IMAGE_NAME   = f"gcr.io/{PROJECT_ID}/{SERVICE_NAME}"
