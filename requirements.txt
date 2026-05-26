@@ -1,0 +1,26 @@
+# Phase 1
+google-cloud-bigquery[pandas]==3.25.0
+google-cloud-bigquery-storage==2.25.0
+pandas==2.2.2
+pyarrow==16.1.0
+db-dtypes==1.2.0
+
+# Phase 2 
+dbt-bigquery
+ 
+# Phase 3
+scikit-learn
+xgboost
+shap
+scipy
+matplotlib
+seaborn
+ 
+# Phase 4
+#langchain==0.2.14
+#langchain-google-genai==1.0.7
+#streamlit==1.37.0
+ 
+# Dev
+#python-dotenv==1.0.1
+#pytest==8.3.2

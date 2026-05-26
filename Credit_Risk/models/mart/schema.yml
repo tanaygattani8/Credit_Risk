@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: mart_fraud_features
+    description: >
+      Model-ready feature table for XGBoost fraud classifier.
+    columns:
+      - name: transaction_id
+        tests:
+          - unique
+          - not_null
+      - name: is_fraud
+        tests:
+          - not_null
+          - accepted_values:
+              values: [0, 1]
+              quote: false
+      - name: transaction_amt
+        tests:
+          - not_null
+
+  - name: mart_fraud_summary
+    description: >
+      Daily aggregated fraud summary for Looker Studio dashboard.
+    columns:
+      - name: txn_date
+        tests:
+          - not_null
+      - name: fraud_rate_pct
+        tests:
+          - not_null

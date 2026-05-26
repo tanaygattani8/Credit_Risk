@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: int_transactions_enriched
+    description: >
+      Joined transactions + identity with engineered features:
+      velocity windows, time-of-day flags, amount deviation,
+      email domain signals, device type.
+    columns:
+      - name: transaction_id
+        tests:
+          - unique
+          - not_null
+      - name: is_fraud
+        tests:
+          - not_null
+      - name: card_txn_count_1h
+        tests:
+          - not_null
+      - name: card_txn_count_24h
+        tests:
+          - not_null

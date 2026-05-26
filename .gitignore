@@ -1,0 +1,36 @@
+# Environment
+.env
+venv/
+__pycache__/
+*.pyc
+.python-version
+
+# Data — too large for git
+data/
+*.csv
+*.zip
+
+# GCP credentials — NEVER commit these
+*.json
+application_default_credentials.json
+service-account-key.json
+
+# DBT
+dbt/target/
+dbt/logs/
+dbt/.user.yml
+
+# Python build
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+
+# IDE
+.vscode/
+.idea/
+*.DS_Store
+
+# Model artifacts (Phase 3)
+*.pkl
+*.joblib

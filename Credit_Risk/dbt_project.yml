@@ -1,0 +1,30 @@
+name: 'Credit_Risk'
+version: '1.0.0'
+config-version: 2
+
+profile: 'Credit_Risk'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  Credit_Risk:
+    staging:
+      +materialized: view          # staging = views (cheap, always fresh)
+      +schema: staging
+
+    intermediate:
+      +materialized: view          # intermediate = views
+      +schema: staging
+
+    mart:
+      +materialized: table         # marts = tables (fast for ML + dashboard reads)
+      +schema: mart

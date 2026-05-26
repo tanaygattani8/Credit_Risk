@@ -1,0 +1,65 @@
+version: 2
+
+sources:
+  - name: raw
+    database: finance-497101
+    schema: raw
+    description: "Raw IEEE-CIS fraud detection tables loaded by ingest.py"
+    tables:
+      - name: transactions
+        description: "590k payment transactions with fraud labels"
+        columns:
+          - name: TransactionID
+            data_tests:
+              - unique
+              - not_null
+          - name: isFraud
+            data_tests:
+              - not_null
+              - accepted_values:
+                  values: [0, 1]
+                  quote: false
+          - name: TransactionAmt
+            data_tests:
+              - not_null
+
+      - name: identity
+        description: "Identity and device metadata for transactions"
+        columns:
+          - name: TransactionID
+            data_tests:
+              - not_null
+              - relationships:
+                  to: source('raw', 'transactions')
+                  field: TransactionID
+
+models:
+  - name: stg_transactions
+    description: "Cleaned and typed transactions — renamed columns, email match flag, timestamp derived"
+    columns:
+      - name: transaction_id
+        data_tests:
+          - unique
+          - not_null
+      - name: is_fraud
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [0, 1]
+              quote: false
+      - name: transaction_amt
+        data_tests:
+          - not_null
+      - name: transaction_timestamp
+        data_tests:
+          - not_null
+
+  - name: stg_identity
+    description: "Cleaned identity and device metadata"
+    columns:
+      - name: transaction_id
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('stg_transactions')
+              field: transaction_id
